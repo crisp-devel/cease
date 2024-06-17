@@ -1,0 +1,10 @@
+function   (setup NAME)
+    if   (NOT EXISTS ${ROOT_LIB}/${NAME})
+        message("[cease] Library ${NAME} is not exist under ${ROOT_LIB}")
+        message(SEND_ERROR)
+    endif()
+
+    if   (EXISTS ${ROOT_LIB}/${NAME}/${NAME}.cmake)
+        include (${ROOT_LIB}/${NAME}/${NAME}.cmake)
+    endif()
+endfunction()
