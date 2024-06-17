@@ -1,6 +1,3 @@
-include (cmake/preset.cmake)
-include (cmake/app.cmake)
-include (cmake/lib.cmake)
-include (cmake/inc.cmake)
-include (cmake/asm.cmake)
-include (cmake/git.cmake)
+include (cease.cmake)
+
+
