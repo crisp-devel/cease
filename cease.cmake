@@ -1,0 +1,16 @@
+set(ROOT_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(ROOT_LIB    ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+set(ROOT        ${CMAKE_CURRENT_SOURCE_DIR})
+
+if   (NOT EXISTS ${ROOT_LIB})
+    file (MAKE_DIRECTORY ${ROOT_LIB})
+endif()
+
+include (cmake/preset.cmake)
+include (cmake/setup.cmake)
+include (cmake/use.cmake)
+include (cmake/app.cmake)
+include (cmake/lib.cmake)
+include (cmake/inc.cmake)
+include (cmake/asm.cmake)
+include (cmake/git.cmake)
