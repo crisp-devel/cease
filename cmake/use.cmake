@@ -4,7 +4,7 @@ function   (use NAME)
         message(SEND_ERROR)
     endif()
 
-    if    (${ROOT_LIB}/${NAME}/CMakeLists.txt)
+    if    (EXISTS ${ROOT_LIB}/${NAME}/CMakeLists.txt)
         add_subdirectory(${ROOT_LIB}/${NAME})
         set(${NAME} ON PARENT_SCOPE)
         set(${NAME} ON)
