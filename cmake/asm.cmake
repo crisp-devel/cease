@@ -3,7 +3,7 @@ set                (CMAKE_ASM_NASM_COMPILE_OBJECT "<CMAKE_ASM_NASM_COMPILER> <IN
 add_compile_options("$<$<COMPILE_LANGUAGE:ASM_NASM>:-f $<IF:$<BOOL:$<TARGET_PROPERTY:NASM_OBJ_FORMAT>>, \ $<TARGET_PROPERTY:NASM_OBJ_FORMAT>, ${CMAKE_ASM_NASM_OBJECT_FORMAT}>>")
 
 
-function   (asm NAME)
+macro   (asm NAME)
     add_library(${NAME} STATIC ${ARGN})
     if    (PRESET_WIN32)
         set_target_properties (
@@ -20,4 +20,4 @@ function   (asm NAME)
             elf64
         )
     endif ()
-endfunction()
+endmacro()

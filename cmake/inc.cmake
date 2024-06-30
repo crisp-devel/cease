@@ -1,4 +1,4 @@
-function   (inc NAME)
+macro   (inc NAME)
     add_library(${NAME} STATIC ${ARGN})
     set_target_properties             (
         ${NAME}
@@ -6,4 +6,4 @@ function   (inc NAME)
         LINKER_LANGUAGE
         C
     )
-endfunction()
+endmacro()
