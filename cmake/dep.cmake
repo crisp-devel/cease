@@ -1,0 +1,11 @@
+macro   (dep NAME)
+    if  (NOT EXISTS ${ROOT_DIR_LIB}/${NAME})
+        message("[cease] Library ${NAME} is not exist under ${ROOT_DIR_LIB}")
+        message(SEND_ERROR)
+    endif()
+
+    if   (EXISTS ${ROOT_DIR_LIB}/${NAME}/CMakeLists.txt)
+        add_subdirectory(lib/${NAME})
+        link_libraries  (${NAME})
+    endif()
+endmacro()

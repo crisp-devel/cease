@@ -1,3 +1,35 @@
-macro   (lib NAME)
-    add_library (${NAME} STATIC ${ARGN})
+macro   (lib)
+    cmake_parse_arguments (ARG "MISC" "NAME" "SRC;DEP;INC" ${ARGN})
+    if   (NOT ARG_NAME)
+        message("[cease] Library name must be specified.")
+        message(SEND_ERROR)
+    endif()
+
+    if   (NOT ARG_SRC)
+        message("[cease] Library source must be specified.")
+        message(SEND_ERROR)
+    endif()
+
+    add_library(${ARG_NAME} ${ARG_SRC})
+
+    if   (ARG_INC)
+        target_include_directories(${ARG_NAME} PRIVATE ${ARG_INC})
+    endif()
+    if   (ARG_DEP)
+        target_link_libraries(${ARG_NAME} PRIVATE ${DEP})
+    endif()
 endmacro()
+
+macro   (lib_from_repo NAME AUTHOR VER)
+    repo(${NAME} ${AUTHOR} ${VER} ${ROOT_DIR_LIB})
+
+    if    (EXISTS ${ROOT_DIR_LIB}/${NAME}/${NAME}.cmake)
+        include  (${ROOT_DIR_LIB}/${NAME}/${NAME}.cmake)
+    endif ()
+endmacro()
+
+macro    (lib_from NAME)
+    if    (EXISTS ${ROOT_DIR_LIB}/${NAME}/${NAME}.cmake)
+        include  (${ROOT_DIR_LIB}/${NAME}/${NAME}.cmake)
+    endif ()
+endmacro ()
